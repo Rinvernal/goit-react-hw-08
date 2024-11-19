@@ -12,7 +12,7 @@ const App = () => {
     if (savedData !== null) {
       return JSON.parse(savedData)
     }
-    contactsData
+    return contactsData;
   });
 
   useEffect(() => {
