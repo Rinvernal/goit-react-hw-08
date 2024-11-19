@@ -1,0 +1,21 @@
+.box{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* .box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  padding: 0;
+  list-style: none;
+}
+.contact {
+  flex: 1 1 calc(25% - 20px); 
+  box-sizing: border-box;
+} */
