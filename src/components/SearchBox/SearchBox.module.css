@@ -1,0 +1,11 @@
+.wrapper{
+  margin: 15px 0;
+}
+.text{
+  margin: 5px 0;
+  font-size: 20px;
+}
+.input{
+  height: 25px;
+  width: 250px;
+}
