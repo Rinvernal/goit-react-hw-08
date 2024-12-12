@@ -1,26 +1,21 @@
+import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css"
-export const ContactList = ({contacts, handleDeleteContact}) => {
+export const ContactList = () => {
+  const contacts = useSelector(state => state.contacts.items)
+  const filter = useSelector(state => state.contacts.filter)
+  const filteredData = contacts.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
   return (
     <ul className={s.box}>
-      {contacts.map(contact => (
+      {filteredData.map(contact => (
         <li className={s.contact} key={contact.id}>
-          <Contact contact = {contact} handleDeleteContact = {handleDeleteContact}/>
+          <Contact contact={contact} id={contact.id} />
         </li>
       ))}
       
     </ul>
   )
 }
-{/* <div className={s.box}>
-      {filter.map(contact => (
-        <section className={s.contact} key={contact.id}>
-          <ul className={s.wrapper}>
-            <li className={s.item}><IoMdPerson className={s.icon}/>{contact.name}</li>
-            <li className={s.item}><FaPhone className={s.icon}/>{contact.number}</li>
-          </ul>
-          <button className={s.button} onClick={() => {handleDeleteContact(contact.id)}}>Delete</button>
-        </section>
-      )) }
-      
-    </div> */}
+export default ContactList
+
+// const filteredData = contacts.filter(item => item.contact.toLowerCase().includes(filter.toLowerCase())
