@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import contactsData from "./contactsData.json"
+import contactsData from "../components/contactsData.json"
 const initialState = {
   items: contactsData,
-  filter: '',
 }
 
 const slice = createSlice({
@@ -15,11 +14,8 @@ const slice = createSlice({
     addContact: (state, action) => {
       state.items.push(action.payload);
     },
-    changeFilter: (state, action) => {
-      state.filter = action.payload;
-    }
   }
 })
-export const {deleteContact, addContact, changeFilter} = slice.actions
+export const {deleteContact, addContact} = slice.actions
 export const selectContacts = state => state.contacts.items;
 export const contactReducer = slice.reducer

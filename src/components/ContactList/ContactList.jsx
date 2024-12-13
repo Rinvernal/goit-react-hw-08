@@ -17,5 +17,3 @@ export const ContactList = () => {
   )
 }
 export default ContactList
-
-// const filteredData = contacts.filter(item => item.contact.toLowerCase().includes(filter.toLowerCase())
