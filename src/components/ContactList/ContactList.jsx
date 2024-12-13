@@ -3,7 +3,7 @@ import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css"
 export const ContactList = () => {
   const contacts = useSelector(state => state.contacts.items)
-  const filter = useSelector(state => state.contacts.filter)
+  const filter = useSelector(state => state.filter.filter)
   const filteredData = contacts.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
   return (
     <ul className={s.box}>
