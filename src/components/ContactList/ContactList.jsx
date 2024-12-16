@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css"
+import { selectFilteredContacts, selectIsLoading } from "../../redux/contactSlice";
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.items)
-  const filter = useSelector(state => state.filter.filter)
-  const filteredData = contacts.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
+  const isLoading = useSelector(selectIsLoading)
+  
+  const filteredData = useSelector(selectFilteredContacts)
   return (
-    <ul className={s.box}>
+    <div>
+      {isLoading && <h2>Loading...</h2>}
+      <ul className={s.box}>
       {filteredData.map(contact => (
         <li className={s.contact} key={contact.id}>
           <Contact contact={contact} id={contact.id} />
@@ -14,6 +17,8 @@ export const ContactList = () => {
       ))}
       
     </ul>
+    </div>
+    
   )
 }
 export default ContactList
