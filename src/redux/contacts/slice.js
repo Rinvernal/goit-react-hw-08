@@ -1,14 +1,15 @@
-import { createSelector, createSlice, isAnyOf } from "@reduxjs/toolkit"
-import { fetchContacts, deleteContact, addContact } from "./contactsOps";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit"
+import { logout } from "../auth/operations";
+import { addContact, deleteContact, fetchContacts } from "./operations";
 const initialState = {
   items: [],
   loading: false,
   error: false,
 }
-export const selectFilteredContacts = createSelector(
-  [(state) => state.contacts.items, (state) => state.filter.name],
-  (items, filter) => items.filter((item) => item.name.toLowerCase().includes(filter.toLowerCase()))
-);
+// export const selectFilteredContacts = createSelector(
+//   [(state) => state.contacts.items, (state) => state.filter.name],
+//   (items, filter) => items.filter((item) => item.name.toLowerCase().includes(filter.toLowerCase()))
+// );
 const slice = createSlice({
   name: 'contacts',
   initialState,
@@ -17,6 +18,7 @@ const slice = createSlice({
       .addCase(fetchContacts.fulfilled, (state, action)=>{
       state.items = action.payload
       })
+      .addCase(logout.fulfilled, () => initialState)
       .addCase(deleteContact.fulfilled, (state, action)=>{
         state.items = state.items.filter(item => item.id !== action.payload.id)
       })
@@ -40,9 +42,10 @@ const slice = createSlice({
       })
   }
 })
-
-export const selectContacts = state => state.contacts.items;
 export const contactReducer = slice.reducer
+
+
 ///
-export const selectIsError = state => state.contacts.error
-export const selectIsLoading = state => state.contacts.loading
+// export const selectIsError = state => state.contacts.error
+// export const selectIsLoading = state => state.contacts.loading
+// export const selectContacts = state => state.contacts.items;
