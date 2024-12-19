@@ -6,10 +6,6 @@ const initialState = {
   loading: false,
   error: false,
 }
-// export const selectFilteredContacts = createSelector(
-//   [(state) => state.contacts.items, (state) => state.filter.name],
-//   (items, filter) => items.filter((item) => item.name.toLowerCase().includes(filter.toLowerCase()))
-// );
 const slice = createSlice({
   name: 'contacts',
   initialState,
@@ -43,9 +39,3 @@ const slice = createSlice({
   }
 })
 export const contactReducer = slice.reducer
-
-
-///
-// export const selectIsError = state => state.contacts.error
-// export const selectIsLoading = state => state.contacts.loading
-// export const selectContacts = state => state.contacts.items;

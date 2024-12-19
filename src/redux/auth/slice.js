@@ -8,7 +8,7 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isRefreshing: false
 }
 
 const slice = createSlice({
@@ -30,6 +30,13 @@ const slice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload
         state.isLoggedIn = true
+        state.isRefreshing = false
+      })
+      .addCase(refreshUser.pending, (state)=>{
+        state.isRefreshing = true
+      })
+      .addCase(refreshUser.rejected, (state)=>{
+        state.isRefreshing = false
       })
   }
 })

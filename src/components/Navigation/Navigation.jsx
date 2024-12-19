@@ -2,29 +2,22 @@ import clsx from "clsx";
 import s from "./Navigation.module.css"
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Button } from "@mui/material";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);
 };
 const Navigation = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn)
   const dispatch = useDispatch()
-
+  const isLoggedIn = useSelector(selectIsLoggedIn)
   return (
     <div>
       <ul className={s.nav}>
       <NavLink className={buildLinkClass} to="/">Home</NavLink>
       <NavLink className={buildLinkClass} to="/contacts">Contacts</NavLink>
-      
-      {!isLoggedIn && (
-        <>
-          <NavLink className={buildLinkClass} to="/login">Login</NavLink>
-          <NavLink className={buildLinkClass} to="/register">Register</NavLink>
-        </>)
-      }
-      {isLoggedIn && <button onClick={()=>dispatch(logout())}>Logout</button>}
+      {isLoggedIn && <Button variant="contained" color="secondary" onClick={()=>dispatch(logout())}>Logout</Button>}
       </ul>
     </div>
   )
